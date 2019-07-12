@@ -52,12 +52,19 @@ def sort_by_cohort(filename):
     for line in file:
         line = line.rstrip().split('|')
         if line[-1] == "G":
-            ghosts.append(line[0] + line[1])
-            print (ghosts)
-
+            ghosts.append(line[0] + " " + line[1])
+        elif line[-1] == "Winter 2016":
+            winter_16.append(line[0] + " " + line[1])
+        elif line[-1] == "Spring 2016":
+            spring_16.append(line[0] + " " + line[1])
+        elif line[-1] == "Summer 2016":
+            summer_16.append(line[0] + " " + line[1])
+        elif line[-1] == "Fall 2015":
+            fall_15.append(line[0] + " " + line[1])
+        else:
+            continue
     
-
-    # Code goes here
+    all_students += fall_15, winter_16, spring_16, summer_16, ghosts
 
     return all_students
 
@@ -85,7 +92,28 @@ def hogwarts_by_house(filename):
     ghosts = []
     instructors = []
 
-    # Code goes here
+    file = open(filename)
+    for line in file:
+        line = line.rstrip().split('|')
+        if line[-1] == "G":
+            ghosts.append(line[1])
+        elif line[-1] == "I":
+            instructors.append(line[1])
+        elif line[2] == "Gryffindor":
+            gryffindor.append(line[1])
+        elif line[2] == "Hufflepuff":
+            hufflepuff.append(line[1])
+        elif line[2] == "Ravenclaw":
+            ravenclaw.append(line[1])
+        elif line[2] == "Slytherin":
+            slytherin.append(line[1])
+        elif line[2] == "Dumbledore's Army":
+            dumbledores_army.append(line[1])
+  
+    all_hogwarts += dumbledores_army, gryffindor, hufflepuff, ravenclaw, slytherin, ghosts, instructors
+    
+    for group in all_hogwarts:
+        group.sort()
 
     return all_hogwarts
 
