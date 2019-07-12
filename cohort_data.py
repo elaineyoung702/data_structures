@@ -133,8 +133,19 @@ def all_students_tuple_list(filename):
 
     student_list = []
 
-    # Code goes here
+    file = open(filename)
 
+    for line in file:
+        line = line.rstrip().split('|')
+        if line[-1] == "G" or line[-1] == "I":
+            continue
+        else:
+            hogwarts_tuple = (line[0] + " " + line[1], line[2], line[3], line[4])
+            student_list.append(hogwarts_tuple)
+
+
+
+    
     return student_list
 
 
