@@ -146,7 +146,9 @@ def all_students_tuple_list(filename):
 
 
     
-    return student_list
+    return (student_list)
+
+full_student_list = all_students_tuple_list("cohort_data.txt")
 
 
 def find_cohort_by_student_name(student_list):
@@ -168,11 +170,21 @@ def find_cohort_by_student_name(student_list):
     'Student not found.'
 
     """
+    student_name = input("Who are you looking for? ")
 
-    # Code goes here
 
-    return "Student not found."
+    for student in student_list:
+        if student_name != student[0]:
+            continue
+        elif student_name == student[0]:
+            cohort = student[-1]
+            print(f"{student_name} was in the {cohort} cohort.")
+            return
 
+    print("Student not found.")
+
+
+find_cohort_by_student_name(full_student_list) 
 
 ##########################################################################################
 # Further Study Questions
