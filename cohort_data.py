@@ -148,7 +148,7 @@ def all_students_tuple_list(filename):
     
     return (student_list)
 
-full_student_list = all_students_tuple_list("cohort_data.txt")
+# full_student_list = all_students_tuple_list("cohort_data.txt")
 
 
 def find_cohort_by_student_name(student_list):
@@ -178,13 +178,13 @@ def find_cohort_by_student_name(student_list):
             continue
         elif student_name == student[0]:
             cohort = student[-1]
-            print(f"{student_name} was in the {cohort} cohort.")
+            print(f"{student_name} was in the {cohort} cohort.") #syntax error YTHO
             return
 
     print("Student not found.")
 
 
-find_cohort_by_student_name(full_student_list) 
+# find_cohort_by_student_name(full_student_list) 
 
 ##########################################################################################
 # Further Study Questions
@@ -202,11 +202,32 @@ def find_name_duplicates(filename):
 
     """
 
-    duplicate_names = set()
+    # duplicate_names = set()
 
-    # Code goes here
+    winter_16 = set()
+    spring_16 = set()
+    summer_16 = set()
+    fall_15 = set()
 
-    return duplicate_names
+    file = open(filename)
+
+    for line in file:
+        line = line.rstrip().split('|')
+        if line[-1] == "G" or line[-1] == "I":
+            continue
+        elif line[-1] == "Winter 2016":
+            winter_16.add(line[1])
+        elif line[-1] == "Spring 2016":
+            spring_16.add(line[1])
+        elif line[-1] == "Summer 2016":
+            summer_16.add(line[1])
+        elif line[-1] == "Fall 2015":
+            fall_15.add(line[1])
+
+    common_last_name_set = fall_15 & summer_16 & spring_16 & winter_16
+
+
+    return common_last_name_set
 
 
 def find_house_members_by_student_name(student_list):
